@@ -4,6 +4,9 @@ sinatraを用いた簡易markdown表示アプリです。
 /hoge/fuga  
 でアクセスすると、hogeディレクトリのfuga.mdを
 
+/hoge/  
+でアクセスすると、hoge/index.mdを
+
 /hoge  
 でアクセスすると、hoge.mdを
 

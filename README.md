@@ -1,11 +1,11 @@
 # open-md
 sinatraを用いた簡易markdown表示アプリです。
 
-/hoge/fuga
+/hoge/fuga  
 でアクセスすると、hogeディレクトリのfuga.mdを
 
-/hoge
+/hoge  
 でアクセスすると、hoge.mdを
 
-/
+/  
 でアクセスすると、index.mdを表示します。

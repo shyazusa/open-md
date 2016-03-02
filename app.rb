@@ -19,10 +19,10 @@ end
 
 helpers do
   def markdown(filename)
-    if File.exist?("#{filename}.md")
-      f = File.read("#{filename}.md", encoding: Encoding::UTF_8)
+    if File.exist?("md/#{filename}.md")
+      f = File.read("md/#{filename}.md", encoding: Encoding::UTF_8)
     else
-      f = File.read("nofile.md", encoding: Encoding::UTF_8)
+      f = File.read("md/nofile.md", encoding: Encoding::UTF_8)
     end
     m = Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(f)
     @body = m

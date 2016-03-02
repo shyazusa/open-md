@@ -2,16 +2,20 @@ require 'sinatra'
 require 'redcarpet'
 
 get '/:directory/:file' do |d, f|
-  t = File.read("#{d}/#{f}.md", :encoding => Encoding::UTF_8)
-  Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(t)
+  markdown("#{d}/#{f}")
 end
 
 get '/:file' do |f|
-  t = File.read("#{f}.md", :encoding => Encoding::UTF_8)
-  Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(t)
+  markdown("#{f}")
 end
 
 get '/' do
-  t = File.read("index.md", :encoding => Encoding::UTF_8)
-  Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(t)
+  markdown("index")
+end
+
+helpers do
+  def markdown(filename)
+    f = File.read("#{filename}.md", :encoding => Encoding::UTF_8)
+    Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(f)
+  end
 end

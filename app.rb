@@ -5,6 +5,10 @@ get '/:directory/:file' do |d, f|
   markdown("#{d}/#{f}")
 end
 
+get '/:directory/' do |d|
+  markdown("#{d}/index")
+end
+
 get '/:file' do |f|
   markdown("#{f}")
 end

@@ -13,4 +13,4 @@ sinatraを用いた簡易markdown表示アプリです。
 /  
 でアクセスすると、index.mdを表示します。
 
-ファイルがない場合はnofile.mdを表示します。
+ファイルがない場合は、nofile.mdを表示します。

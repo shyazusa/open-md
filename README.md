@@ -1,16 +1,16 @@
 # open-md
 sinatraを用いた簡易markdown表示アプリです。
 
-/hoge/fuga  
-でアクセスすると、hogeディレクトリのfuga.mdを
+`/hoge/fuga`  
+でアクセスすると、`md/hoge/fuga.md`を
 
-/hoge/  
-でアクセスすると、hoge/index.mdを
+`/hoge/`  
+でアクセスすると、`md/hoge/index.md`を
 
-/hoge  
-でアクセスすると、hoge.mdを
+`/hoge`  
+でアクセスすると、`md/hoge.md`を
 
-/  
-でアクセスすると、index.mdを表示します。
+`/`  
+でアクセスすると、`md/index.md`を
 
-ファイルがない場合は、nofile.mdを表示します。
+ファイルがない場合は、`md/nofile.md`を表示します。

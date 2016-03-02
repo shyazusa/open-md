@@ -10,16 +10,19 @@ get '/:directory/' do |d|
 end
 
 get '/:file' do |f|
-  markdown("#{f}")
+  markdown(f.to_s)
 end
 
 get '/' do
-  markdown("index")
+  markdown('index')
 end
 
 helpers do
   def markdown(filename)
-    f = File.read("#{filename}.md", :encoding => Encoding::UTF_8)
-    Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(f)
+    f = File.read("#{filename}.md", encoding: Encoding::UTF_8)
+    # @title = filename.to_s
+    @title = Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(f).match(/<h1>(.*)<\/h1>/)[1]
+    @body = Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(f)
+    erb :index
   end
 end

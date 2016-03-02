@@ -20,9 +20,9 @@ end
 helpers do
   def markdown(filename)
     f = File.read("#{filename}.md", encoding: Encoding::UTF_8)
-    # @title = filename.to_s
-    @title = Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(f).match(/<h1>(.*)<\/h1>/)[1]
-    @body = Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(f)
+    m = Redcarpet::Markdown.new(Redcarpet::Render::HTML).render(f)
+    @body = m
+    @title = m.match(/<h1>(.*)<\/h1>/)[1]
     erb :index
   end
 end

@@ -1,12 +1,17 @@
 require 'sinatra'
 require 'redcarpet'
 
+set :index, 'index'
+set :nofile, 'nofile'
+set :backlink, true
+set :toplink, true
+
 get '/:directory/:file' do |d, f|
   markdown("#{d}/#{f}", "/#{d}/")
 end
 
 get '/:directory/' do |d|
-  markdown("#{d}/index", "/#{d}/")
+  markdown("#{d}/#{settings.index}", "/#{d}/")
 end
 
 get '/:file' do |f|
@@ -14,17 +19,19 @@ get '/:file' do |f|
 end
 
 get '/' do
-  markdown('index', '/')
+  markdown(settings.index, '/')
 end
 
 helpers do
   def markdown(filename, directory)
-    filename = 'nofile' unless File.exist?("md/#{filename}.md")
+    filename = settings.nofile unless File.exist?("md/#{filename}.md")
     file = File.read("md/#{filename}.md", encoding: Encoding::UTF_8)
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true, fenced_code_blocks: true, highlight: true).render(file)
     @body = markdown
     @title = markdown.match(%r{<h1>(.*)</h1>})[1]
     @back = "#{directory}"
+    @backlink = settings.backlink
+    @toplink = settings.toplink
     erb :index
   end
 end

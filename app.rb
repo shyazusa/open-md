@@ -19,14 +19,11 @@ end
 
 helpers do
   def markdown(filename)
-    if File.exist?("md/#{filename}.md")
-      f = File.read("md/#{filename}.md", encoding: Encoding::UTF_8)
-    else
-      f = File.read("md/nofile.md", encoding: Encoding::UTF_8)
-    end
-    m = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true, fenced_code_blocks: true, highlight: true).render(f)
-    @body = m
-    @title = m.match(/<h1>(.*)<\/h1>/)[1]
+    filename = 'nofile' unless File.exist?("md/#{filename}.md")
+    file = File.read("md/#{filename}.md", encoding: Encoding::UTF_8)
+    markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true, fenced_code_blocks: true, highlight: true).render(file)
+    @body = markdown
+    @title = markdown.match(/<h1>(.*)<\/h1>/)[1]
     erb :index
   end
 end

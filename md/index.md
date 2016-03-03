@@ -4,7 +4,7 @@
 ## head2
 ### head3
 
-| header | header | header | 
+| header | header | header |
 |:--:|:--:|:--:|
 |column|column|column|
 |column|column|column|

@@ -10,11 +10,11 @@ get '/:directory/' do |d|
 end
 
 get '/:file' do |f|
-  markdown(f.to_s)
+  markdown(f.to_s, '')
 end
 
 get '/' do
-  markdown('index')
+  markdown('index', '')
 end
 
 helpers do

@@ -19,13 +19,13 @@ end
 
 helpers do
   def markdown(filename, directory)
-    directory = '/' unless File.exist?("md/#{directory}/index.md")
+    directory = '' unless File.exist?("md/#{directory}/index.md")
     filename = 'nofile' unless File.exist?("md/#{filename}.md")
     file = File.read("md/#{filename}.md", encoding: Encoding::UTF_8)
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true, fenced_code_blocks: true, highlight: true).render(file)
     @body = markdown
     @title = markdown.match(%r{<h1>(.*)</h1>})[1]
-    @back = directory.to_s
+    @back = "/#{directory}"
     erb :index
   end
 end

@@ -98,6 +98,9 @@ helpers do
 
   def saveMarkdown(filename, directory, body)
     unless File.exist?("md/#{filename}.md")
+      unless Dir.exist?("md/#{directory}")
+        FileUtils.mkdir_p("md/#{directory}")
+      end
       File.open("md/#{filename}.md","w") do |file|
         file.puts body
       end

@@ -63,7 +63,12 @@ helpers do
     filename = settings.nofile unless File.exist?("md/#{filename}.md")
     file = File.read("md/#{filename}.md", encoding: Encoding::UTF_8)
     markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true, tables: true, fenced_code_blocks: true, highlight: true).render(file)
-    @title = markdown.match(%r{<h1>(.*)</h1>})[1]
+    if markdown.match(%r{<h1>(.*)</h1>}).nil?
+      title = ''
+    else
+      title = markdown.match(%r{<h1>(.*)</h1>})[1]
+    end
+    @title = title
     @body = markdown
     @back = "#{directory}"
     @editlink = settings.editlink
@@ -77,7 +82,12 @@ helpers do
     @directory = directory
     filename = settings.nofile unless File.exist?("md/#{filename}.md")
     file = File.read("md/#{filename}.md", encoding: Encoding::UTF_8)
-    @title = file.match(%r{#\s(.*)})[1]
+    if file.match(%r{#\s(.*)}).nil?
+      title = ''
+    else
+      title = file.match(%r{#\s(.*)})[1]
+    end
+    @title = title
     @body = file
     @back = "#{directory}"
     @editlink = settings.editlink
